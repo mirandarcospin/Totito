@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 buttons[i][j].setOnClickListener(this);
             }
         }
+        //I moved buttonReset to the top and as private
         buttonReset = findViewById(R.id.button_reset);
         buttonReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -236,5 +237,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         player1Points = savedInstanceState.getInt("player1Points");
         player2Points = savedInstanceState.getInt("player2Points");
         player1Turn = savedInstanceState.getBoolean("player1Turn");
+        restoreImages();
     }
+
+    void restoreImages()
+    { //Images stay in their place
+        for(int i = 0; i < 3; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                Button thisButton = buttons[i][j];
+                if(thisButton.getText() == "X")
+                {
+                    thisButton.setBackgroundResource(R.drawable.player1);
+                }
+                else if(thisButton.getText() == "O")
+                {
+                    thisButton.setBackgroundResource(R.drawable.player2);
+                }
+            }
+        }
+    }
+
 }
